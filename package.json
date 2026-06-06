@@ -1,0 +1,46 @@
+{
+  "name": "flapjack",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Open-source AI agent org you run from the terminal. A mixture of models, your own keys, every agent a markdown file.",
+  "license": "MIT",
+  "bin": {
+    "flapjack": "dist/cli/index.js"
+  },
+  "scripts": {
+    "site:dev": "next dev",
+    "site:build": "next build",
+    "site:start": "next start",
+    "build": "tsc -p tsconfig.cli.json",
+    "prepare": "tsc -p tsconfig.cli.json",
+    "flapjack": "node dist/cli/index.js",
+    "lint": "next lint",
+    "test": "npm run build && node --test test/pricing.test.mjs test/store-roundtrip.test.mjs test/store-migrate.test.mjs test/retry.test.mjs test/cli.test.mjs test/fetch-url.test.mjs test/config-tools.test.mjs test/memory.test.mjs test/delegation-guard.test.mjs test/delegation-loop.test.mjs test/native-loop.test.mjs test/gating.test.mjs test/serve.test.mjs"
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.10",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "autoprefixer": "^10.4.19",
+    "next": "14.2",
+    "postcss": "^8.4.39",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwindcss": "^3.4.6",
+    "typescript": "^5.5.3"
+  },
+  "engines": {
+    "node": ">=18.18"
+  },
+  "files": [
+    "dist",
+    "agents",
+    "knowledge",
+    "README.md",
+    "LICENSE",
+    ".env.example"
+  ]
+}

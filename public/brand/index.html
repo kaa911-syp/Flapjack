@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Flapjack — logo options</title>
+    <style>
+      :root { color-scheme: dark; }
+      body {
+        margin: 0;
+        background: #0b0d12;
+        color: #e2e8f0;
+        font: 15px/1.5 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+        padding: 48px 24px;
+      }
+      h1 { font-size: 22px; margin: 0 0 4px; }
+      p.sub { color: #94a3b8; margin: 0 0 32px; }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 20px;
+        max-width: 1100px;
+      }
+      .card {
+        background: #11141b;
+        border: 1px solid #1f2430;
+        border-radius: 16px;
+        padding: 24px;
+        text-align: center;
+      }
+      .row { display: flex; align-items: center; justify-content: center; gap: 20px; margin-bottom: 18px; }
+      .row img.lg { width: 72px; height: 72px; }
+      .row img.sm { width: 32px; height: 32px; }
+      .on-light { background: #f8fafc; border-radius: 12px; padding: 8px; }
+      .name { font-weight: 600; }
+      .desc { color: #94a3b8; font-size: 13px; margin-top: 4px; }
+      .lockup { display: flex; align-items: center; gap: 12px; justify-content: center; margin-top: 14px; }
+      .wordmark { font-weight: 800; font-size: 22px; letter-spacing: -0.02em; }
+      code { color: #ffb454; font-size: 12px; }
+    </style>
+  </head>
+  <body>
+    <h1>Flapjack — 5 logo options</h1>
+    <p class="sub">Same syrup-on-ink palette. Pick one and tell me the number — I’ll wire it through the app, favicon, and README.</p>
+    <div class="grid">
+      <div class="card">
+        <div class="row">
+          <img class="lg" src="option-1-stack.svg" alt="" />
+          <img class="sm" src="option-1-stack.svg" alt="" />
+          <span class="on-light"><img class="sm" src="option-1-stack.svg" alt="" /></span>
+        </div>
+        <div class="name">1 · Stack</div>
+        <div class="desc">Three pancakes = a stack of agents. Literal &amp; friendly.</div>
+        <div class="lockup"><img class="sm" src="option-1-stack.svg" /><span class="wordmark">Flapjack</span></div>
+      </div>
+      <div class="card">
+        <div class="row">
+          <img class="lg" src="option-2-monogram.svg" alt="" />
+          <img class="sm" src="option-2-monogram.svg" alt="" />
+          <span class="on-light"><img class="sm" src="option-2-monogram.svg" alt="" /></span>
+        </div>
+        <div class="name">2 · Monogram F</div>
+        <div class="desc">Bold “F” built from stacked bars. App-icon ready.</div>
+        <div class="lockup"><img class="sm" src="option-2-monogram.svg" /><span class="wordmark">Flapjack</span></div>
+      </div>
+      <div class="card">
+        <div class="row">
+          <img class="lg" src="option-3-griddle.svg" alt="" />
+          <img class="sm" src="option-3-griddle.svg" alt="" />
+          <span class="on-light"><img class="sm" src="option-3-griddle.svg" alt="" /></span>
+        </div>
+        <div class="name">3 · Griddle</div>
+        <div class="desc">Top-down pancake / concentric target. Abstract &amp; clean.</div>
+        <div class="lockup"><img class="sm" src="option-3-griddle.svg" /><span class="wordmark">Flapjack</span></div>
+      </div>
+      <div class="card">
+        <div class="row">
+          <img class="lg" src="option-4-roster.svg" alt="" />
+          <img class="sm" src="option-4-roster.svg" alt="" />
+          <span class="on-light"><img class="sm" src="option-4-roster.svg" alt="" /></span>
+        </div>
+        <div class="name">4 · Roster</div>
+        <div class="desc">Stacked agent rows on a spine = an org chart of agents.</div>
+        <div class="lockup"><img class="sm" src="option-4-roster.svg" /><span class="wordmark">Flapjack</span></div>
+      </div>
+      <div class="card">
+        <div class="row">
+          <img class="lg" src="option-5-chat.svg" alt="" />
+          <img class="sm" src="option-5-chat.svg" alt="" />
+          <span class="on-light"><img class="sm" src="option-5-chat.svg" alt="" /></span>
+        </div>
+        <div class="name">5 · Chat</div>
+        <div class="desc">Speech bubble + stack lines = “your org lives in chat”.</div>
+        <div class="lockup"><img class="sm" src="option-5-chat.svg" /><span class="wordmark">Flapjack</span></div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  @apply bg-ink-900 text-slate-200 antialiased;
+}
+
+/* Thin, unobtrusive scrollbars to match the dark UI. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #2a3140 transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background: #2a3140;
+  border-radius: 999px;
+}
+
+.prose-msg p {
+  margin: 0;
+}
+
+.card {
+  @apply rounded-xl border border-ink-600 bg-ink-800;
+}
+
+.btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition disabled:cursor-not-allowed disabled:opacity-50;
+}
+.btn-primary {
+  @apply btn bg-syrup-500 text-ink-900 hover:bg-syrup-400;
+}
+.btn-ghost {
+  @apply btn border border-ink-600 bg-ink-700 text-slate-200 hover:border-ink-400;
+}
+.btn-danger {
+  @apply btn border border-red-900/60 bg-red-950/40 text-red-300 hover:bg-red-900/40;
+}
+.btn-ok {
+  @apply btn border border-emerald-900/60 bg-emerald-950/40 text-emerald-300 hover:bg-emerald-900/40;
+}
+
+.input {
+  @apply w-full rounded-lg border border-ink-600 bg-ink-900 px-3 py-2 text-sm text-slate-200 outline-none placeholder:text-slate-500 focus:border-syrup-500;
+}
+.label {
+  @apply mb-1 block text-xs font-semibold uppercase tracking-wide text-slate-400;
+}
+.badge {
+  @apply inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium;
+}
