@@ -25,6 +25,8 @@ npm run build
 npm run flapjack -- <command>        # e.g. npm run flapjack -- list
 # or `npm link` once to get a global `flapjack` on PATH.
 
+npm test                             # build the CLI, then run the test/ suite (Node's built-in runner)
+
 npm run lint                         # next lint — lints the WHOLE repo, CLI included
 
 # Landing page (optional, separate from the product)
@@ -32,9 +34,15 @@ npm run site:dev
 npm run site:build
 ```
 
-There is **no test framework** wired up — no `npm test`, no test files. Verify CLI
-changes by building and running commands against a scratch dir (`flapjack init` in a
-temp folder, then `run`/`approve`/`costs`).
+Tests run on **Node's built-in test runner** (`node --test`, zero extra dependencies).
+`npm test` builds the CLI first, then runs the suite in `test/` — 13 `.test.mjs` files
+(`pricing`, `store-roundtrip`, `store-migrate`, `retry`, `cli`, `fetch-url`, `config-tools`,
+`memory`, `delegation-guard`, `delegation-loop`, `native-loop`, `gating`, `serve`) covering
+pricing math, the store's round-trip + legacy-settings migration, LLM retry/backoff, CLI
+dispatch, the fetch-url and config/memory tools, the delegation guard + loop protection, the
+native tool-calling loop, approval gating, and the `serve` HTTP layer. The tests exercise the
+compiled `dist/`, so the build always runs first. For ad-hoc checks you can still run the CLI
+against a scratch dir (`flapjack init` in a temp folder, then `run`/`approve`/`costs`).
 
 After editing anything in `src/lib` or `src/cli` you **must `npm run build`** before
 the change is visible — the CLI runs `dist/`, never the `.ts` sources.
@@ -44,13 +52,18 @@ the change is visible — the CLI runs `dist/`, never the `.ts` sources.
 One CLI drives a provider-neutral engine in `src/lib`. Read these files together to
 understand the whole; each is small and single-purpose.
 
-- **`orchestrator.ts` — the ReAct loop (`runAgent`).** Builds a prompt from the agent's
+- **`orchestrator.ts` — the agent loop (`runAgent`).** Builds a prompt from the agent's
   charter + `knowledge/` + recent channel history, then loops up to `settings.maxSteps`.
-  **Hard contract:** the model must reply with exactly ONE JSON object —
-  `{thought, action, args}` for a tool call or `{action:"finish", summary}` to stop.
-  `extractJson` pulls the first balanced JSON object out of the reply (tolerates code
-  fences). Two consecutive unparseable replies → give up and treat the raw text as the
-  final summary. Running out of steps → one forced plain-text wrap-up.
+  Each step calls `llm.ts`'s `complete()` with the **native tool schemas** the agent is
+  allowed to call (`schemasFor(agent.tools)`) and reads `res.toolCalls`. A reply with **no
+  tool calls** is the finish — its plain text becomes the final summary. Otherwise every
+  requested call is run inline, queued for approval, or delegated, and each result is fed
+  back as a `tool`-role message for the next step. On the **final step** it passes
+  `toolChoice:"none"`, so tools are withheld and the model is forced to produce a plain-text
+  wrap-up — no extra LLM call needed. An opt-in `Profile.toolMode:"json"` fallback (handled
+  in `llm.ts`'s `completeJsonMode`, not in the loop) serves local models without native tool
+  support: it injects a JSON protocol into the prompt and parses one `{action, args}` object
+  back into the same `toolCalls` shape, so the orchestrator loop is identical either way.
 - **`tools.ts` — the tool registry.** Each tool is either `gated: false` (runs inline in
   the loop via `run()`) or `gated: true` (a real-world side effect that is **never executed
   in the loop** — it creates a pending `Approval` and returns). Gated effects live in
