@@ -20,11 +20,12 @@ control. No dashboard, no SaaS, no telemetry.
 
 ## Demo
 
-> A short terminal walkthrough. Record an asciinema/GIF and drop it in here:
->
-> ```md
-> [![asciicast](docs/demo.svg)](https://asciinema.org/a/your-cast-id)
-> ```
+<div align="center">
+  <video src="https://github.com/kaa911-syp/Flapjack/raw/main/media/flapjack-promo.mp4" controls muted loop width="760"></video>
+</div>
+
+> ▶️ **[Watch the 30-second product video](media/flapjack-promo.mp4)** — your AI co-founder, right inside Slack.
+> If the player above doesn't appear, use that link (GitHub streams it once this is pushed to `main`).
 
 **What the demo should show, in order:** `flapjack init` → `flapjack profile add`
 → `flapjack test` → `flapjack list` → `flapjack run` → a queued action in
