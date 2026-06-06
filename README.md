@@ -21,11 +21,13 @@ control. No dashboard, no SaaS, no telemetry.
 ## Demo
 
 <div align="center">
-  <video src="https://github.com/kaa911-syp/Flapjack/raw/main/media/flapjack-promo.mp4" controls muted loop width="760"></video>
+  <a href="media/flapjack-promo.mp4">
+    <img src="media/flapjack-promo.gif" alt="Flapjack — your AI co-founder inside Slack (30s demo)" width="760" />
+  </a>
 </div>
 
-> ▶️ **[Watch the 30-second product video](media/flapjack-promo.mp4)** — your AI co-founder, right inside Slack.
-> If the player above doesn't appear, use that link (GitHub streams it once this is pushed to `main`).
+> ▶️ Auto-playing preview above (no sound — GitHub can't autoplay video).
+> **[Watch the full 30-second video with sound →](media/flapjack-promo.mp4)**
 
 **What the demo should show, in order:** `flapjack init` → `flapjack profile add`
 → `flapjack test` → `flapjack list` → `flapjack run` → a queued action in
